@@ -6,6 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Core;
+    using Newtonsoft.Json;
     using SocketsManager;
 
     public abstract class SocketHandler
@@ -27,33 +28,26 @@
             await ConnectionManager.RemoveSocketAsync(ConnectionManager.GetId(socket));
         }
 
-        public async Task SendMessage(WebSocket socket, string message)
+        public async Task SendMessage(WebSocket socket, Message message)
         {
             if (socket.State != WebSocketState.Open)
                 return;
-            await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(message), 0, message.Length),
-                WebSocketMessageType.Text, true, CancellationToken.None);
+
+            var jsonMessage = JsonConvert.SerializeObject(message);
+            var bytes = Encoding.UTF8.GetBytes(jsonMessage);
+            await socket.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        public async Task SendMessage(Guid id, string message)
+        public async Task SendMessage(Guid id, Message message)
         {
             await SendMessage(ConnectionManager.GetSocketById(id), message);
-
-        }
-
-        public async Task SendMessageToAll(string message)
-        {
-            foreach (var connection in ConnectionManager.GetAllConnections())
-            {
-                await SendMessage(connection.Value, message);
-            }
         }
 
         public async Task SendMessageToAll(Message message)
         {
             foreach (var connection in ConnectionManager.GetAllConnections())
             {
-                await SendMessage(connection.Value, message.User.Name + ": " + message.Text);
+                await SendMessage(connection.Value, message);
             }
         }
 

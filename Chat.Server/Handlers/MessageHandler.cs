@@ -31,7 +31,13 @@ namespace Chat.Server.Handlers
 
             _connections.TryAdd(socket, user);
 
-            await SendMessageToAll($"{user.Name} connected");
+            var message = new Message
+            {
+                User = user,
+                Text = "connected"
+            };
+
+            await SendMessageToAll(message);
         }
 
         public override async Task Receive(WebSocket socket, WebSocketReceiveResult result, byte[] buffer)

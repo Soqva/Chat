@@ -73,10 +73,11 @@ D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Unity.Container.dll
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Core.dll
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Core.pdb
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.csproj.AssemblyReference.cache
-D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Views\MainWindow.baml
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Views\MainWindow.g.cs
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\App.g.cs
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient_MarkupCompile.cache
+D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient_MarkupCompile.lref
+D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Views\MainWindow.baml
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.g.resources
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.AssemblyInfoInputs.cache

@@ -8,7 +8,7 @@
     {
         private readonly MessageService _messageService;
 
-        private string _message = "";
+        private string _message;
 
         public string Message
         {
@@ -16,12 +16,12 @@
             set => SetProperty(ref _message, value);
         }
 
-        private string _output = "";
+        private string _output;
 
         public string Output
         {
             get => _output;
-            set => SetProperty(ref _output, _output + RecieveMessage());
+            set => SetProperty(ref _output, _output + value + "\n");
         }
 
         public DelegateCommand SendMessageCommand { get; private set; }
@@ -34,12 +34,16 @@
 
         private void SendMessage()
         {
+
             _messageService.SendMessage(_message);
+            Message = "";
+            RecieveMessage();
         }
 
-        private string RecieveMessage()
+        private void RecieveMessage()
         {
-            return _messageService.RecieveMessage().Result;
+            var message = _messageService.RecieveMessage().Result;
+            Output = message.User.Name + ": " + message.Text;
         }
     }
 }

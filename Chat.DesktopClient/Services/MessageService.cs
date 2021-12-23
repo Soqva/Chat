@@ -33,13 +33,14 @@ namespace Chat.DesktopClient.Services
             _connectionManager.Client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        public async Task<string> RecieveMessage()
+        public async Task<Message> RecieveMessage()
         {
             var buffer = new byte[1024 * 4];
-
             var result = await _connectionManager.Client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            
+            var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
 
-            return Encoding.UTF8.GetString(buffer, 0, result.Count);
+            return JsonConvert.DeserializeObject<Message>(message);
         }
     }
 }
