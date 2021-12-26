@@ -23,15 +23,15 @@ namespace Chat.Server.Handlers
         {
             await base.OnConnected(socket);
 
-            var user = new User
+            User user = new User
             {
                 Id = Guid.NewGuid(),
                 Name = $"User{_connections.Count}"
             };
 
-            _connections.TryAdd(socket, user);
+            _ = _connections.TryAdd(socket, user);
 
-            var message = new Message
+            Message message = new Message
             {
                 User = user,
                 Text = "connected"
@@ -42,11 +42,10 @@ namespace Chat.Server.Handlers
 
         public override async Task Receive(WebSocket socket, WebSocketReceiveResult result, byte[] buffer)
         {
-            var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+            string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
             Message messageObject = JsonConvert.DeserializeObject<Message>(message);
-            User user;
 
-            _connections.TryGetValue(socket, out user);
+            _ = _connections.TryGetValue(socket, out User user);
 
             messageObject.User = user;
 

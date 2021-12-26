@@ -56,6 +56,11 @@ C:\Users\kabaevra\Desktop\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.
 C:\Users\kabaevra\Desktop\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
 C:\Users\kabaevra\Desktop\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Core.dll
 C:\Users\kabaevra\Desktop\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Core.pdb
+D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.csproj.AssemblyReference.cache
+D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Views\MainWindow.g.cs
+D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\App.g.cs
+D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient_MarkupCompile.cache
+D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient_MarkupCompile.lref
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Chat.DesktopClient.exe
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Chat.DesktopClient.deps.json
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Chat.DesktopClient.runtimeconfig.json
@@ -72,11 +77,6 @@ D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Unity.Abstractions.
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Unity.Container.dll
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Core.dll
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Core.pdb
-D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.csproj.AssemblyReference.cache
-D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Views\MainWindow.g.cs
-D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\App.g.cs
-D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient_MarkupCompile.cache
-D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient_MarkupCompile.lref
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Views\MainWindow.baml
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.g.resources
 D:\Projects\Chat\Chat.DesktopClient\obj\Debug\net5.0-windows\Chat.DesktopClient.GeneratedMSBuildEditorConfig.editorconfig

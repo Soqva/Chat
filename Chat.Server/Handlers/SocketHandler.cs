@@ -5,6 +5,7 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
     using Core;
     using Newtonsoft.Json;
     using SocketsManager;
@@ -33,8 +34,8 @@
             if (socket.State != WebSocketState.Open)
                 return;
 
-            var jsonMessage = JsonConvert.SerializeObject(message);
-            var bytes = Encoding.UTF8.GetBytes(jsonMessage);
+            string jsonMessage = JsonConvert.SerializeObject(message);
+            byte[] bytes = Encoding.UTF8.GetBytes(jsonMessage);
             await socket.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
@@ -45,7 +46,7 @@
 
         public async Task SendMessageToAll(Message message)
         {
-            foreach (var connection in ConnectionManager.GetAllConnections())
+            foreach (KeyValuePair<Guid, WebSocket> connection in ConnectionManager.GetAllConnections())
             {
                 await SendMessage(connection.Value, message);
             }

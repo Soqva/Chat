@@ -1,49 +1,46 @@
-﻿namespace Chat.DesktopClient.ViewModels
-{
-    using Prism.Commands;
-    using Prism.Mvvm;
-    using Services;
+﻿using Chat.DesktopClient.Services;
+using Prism.Commands;
+using Prism.Mvvm;
+using System.Collections.ObjectModel;
 
+namespace Chat.DesktopClient.ViewModels
+{
     public class MainWindowViewModel : BindableBase
     {
+        public DelegateCommand SendMessageCommand { get; private set; }
+
+        public ObservableCollection<string> ReceivedMessages { get; set; }
+
         private readonly MessageService _messageService;
 
-        private string _message;
-
-        public string Message
+        private string _messageStringToSend;
+        public string MessageStringToSend
         {
             get => "";
-            set => SetProperty(ref _message, value);
+            set => SetProperty(ref _messageStringToSend, value);
         }
-
-        private string _output;
-
-        public string Output
-        {
-            get => _output;
-            set => SetProperty(ref _output, _output + value + "\n");
-        }
-
-        public DelegateCommand SendMessageCommand { get; private set; }
 
         public MainWindowViewModel()
         {
-            _messageService = new MessageService();
             SendMessageCommand = new DelegateCommand(SendMessage);
+            ReceivedMessages = new ObservableCollection<string>();
+            _messageService = new MessageService();
+            _messageService.ReceiveEvent += ReceiveMessage;
         }
 
         private void SendMessage()
         {
-
-            _messageService.SendMessage(_message);
-            Message = "";
-            RecieveMessage();
+            if (!string.IsNullOrEmpty(_messageStringToSend))
+            {
+                _messageService.SendMessage(_messageStringToSend);
+                MessageStringToSend = "";
+            }
         }
 
-        private void RecieveMessage()
+        private void ReceiveMessage()
         {
-            var message = _messageService.RecieveMessage().Result;
-            Output = message.User.Name + ": " + message.Text;
+            string receivedMessageString = _messageService.ReceivedMessageObject.User.Name + ": " + _messageService.ReceivedMessageObject.Text;
+            System.Windows.Application.Current.Dispatcher.Invoke(() => ReceivedMessages.Add(receivedMessageString));
         }
     }
 }

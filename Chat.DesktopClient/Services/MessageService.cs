@@ -9,38 +9,54 @@ using System.Threading.Tasks;
 
 namespace Chat.DesktopClient.Services
 {
-    class MessageService
+    public class MessageService
     {
+        public event Action ReceiveEvent;
+
+        public Message ReceivedMessageObject { get; set; }
+
         private const string API = "message";
 
         private readonly ConnectionManager _connectionManager;
-
+ 
         public MessageService()
         {
             _connectionManager = new ConnectionManager(API);
             _ = _connectionManager.StartConnection();
+            _ = Task.Run(() => ReceiveMessageAsync());
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(string messageStringToSend)
         {
-            Message messageObject = new Message
+            Message messageObjectToSend = new Message
             {
-                Text = message
+                Text = messageStringToSend
             };
 
-            var jsonMessage = JsonConvert.SerializeObject(messageObject);
-            var bytes = Encoding.UTF8.GetBytes(jsonMessage);
-            _connectionManager.Client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
+            string jsonMessageToSend = JsonConvert.SerializeObject(messageObjectToSend);
+            byte[] bytes = Encoding.UTF8.GetBytes(jsonMessageToSend);
+
+            _ = _connectionManager.Client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        public async Task<Message> RecieveMessage()
+        private async Task ReceiveMessageAsync()
         {
-            var buffer = new byte[1024 * 4];
-            var result = await _connectionManager.Client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-            
-            var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+            byte[] buffer = new byte[1024 * 4];
 
-            return JsonConvert.DeserializeObject<Message>(message);
+            while (true)
+            {
+                WebSocketReceiveResult receiveResult = await _connectionManager.Client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                string jsonReceivedMessage = Encoding.UTF8.GetString(buffer, 0, receiveResult.Count);
+                
+                if (receiveResult.MessageType == WebSocketMessageType.Close)
+                {
+                    await _connectionManager.Client.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+                    break;
+                }
+
+                ReceivedMessageObject = JsonConvert.DeserializeObject<Message>(jsonReceivedMessage);
+                ReceiveEvent?.Invoke();
+            }
         }
     }
 }

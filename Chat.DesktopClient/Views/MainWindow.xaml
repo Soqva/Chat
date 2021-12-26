@@ -4,13 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        xmlns:prism="http://prismlibrary.com/" xmlns:viewmodels="clr-namespace:Chat.DesktopClient.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:prism="http://prismlibrary.com/" xmlns:viewmodels="clr-namespace:Chat.DesktopClient.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="Chat" Height="450" Width="800">
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <TextBlock TextWrapping="Wrap" Height="300" Width="500" Text="{Binding Output, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-            <TextBox Height="50" Width="500" Text="{Binding Message}"/>
+            <ListView Height="300" Width="500"
+                      ItemsSource="{Binding ReceivedMessages}"/>
+            <TextBox Height="50" Width="500" Text="{Binding MessageStringToSend}"/>
             <Button Height="50" Width="500" Content="Send Message" Command="{Binding SendMessageCommand}"></Button>
         </StackPanel>
     </Grid>
