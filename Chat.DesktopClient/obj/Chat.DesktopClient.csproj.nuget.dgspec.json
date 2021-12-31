@@ -44,9 +44,17 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.13, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
             },
             "Prism.Unity": {
               "target": "Package",

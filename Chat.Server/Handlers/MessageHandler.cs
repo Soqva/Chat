@@ -12,7 +12,7 @@ namespace Chat.Server.Handlers
 {
     public class MessageHandler : SocketHandler
     {
-        private readonly ConcurrentDictionary<WebSocket, User> _connections = new();
+        private readonly List<WebSocket> _connections = new();
 
         public MessageHandler(ConnectionManager connectionManager) : base(connectionManager)
         {
@@ -23,17 +23,15 @@ namespace Chat.Server.Handlers
         {
             await base.OnConnected(socket);
 
-            User user = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = $"User{_connections.Count}"
-            };
-
-            _ = _connections.TryAdd(socket, user);
+            _connections.Add(socket);
 
             Message message = new Message
             {
-                User = user,
+                User = new User
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Someone"
+                },
                 Text = "connected"
             };
 
@@ -44,10 +42,6 @@ namespace Chat.Server.Handlers
         {
             string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
             Message messageObject = JsonConvert.DeserializeObject<Message>(message);
-
-            _ = _connections.TryGetValue(socket, out User user);
-
-            messageObject.User = user;
 
             await SendMessageToAll(messageObject);
         }

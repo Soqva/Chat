@@ -6,6 +6,7 @@ using Core;
 using Chat.DesktopClient.Managers;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Chat.DesktopClient.Repositories;
 
 namespace Chat.DesktopClient.Services
 {
@@ -18,10 +19,14 @@ namespace Chat.DesktopClient.Services
         private const string API = "message";
 
         private readonly ConnectionManager _connectionManager;
+
+        private readonly MessageRepository _messageRepository;
+
  
         public MessageService()
         {
             _connectionManager = new ConnectionManager(API);
+            _messageRepository = new MessageRepository();
             _ = _connectionManager.StartConnection();
             _ = Task.Run(() => ReceiveMessageAsync());
         }
@@ -30,8 +35,11 @@ namespace Chat.DesktopClient.Services
         {
             Message messageObjectToSend = new Message
             {
+                User = _connectionManager.User,
                 Text = messageStringToSend
             };
+
+            Task.Run(() => _messageRepository.Save(messageObjectToSend));
 
             string jsonMessageToSend = JsonConvert.SerializeObject(messageObjectToSend);
             byte[] bytes = Encoding.UTF8.GetBytes(jsonMessageToSend);
