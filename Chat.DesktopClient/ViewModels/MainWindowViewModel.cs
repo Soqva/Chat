@@ -16,7 +16,7 @@ namespace Chat.DesktopClient.ViewModels
         private string _messageStringToSend;
         public string MessageStringToSend
         {
-            get => "";
+            get => _messageStringToSend;
             set => SetProperty(ref _messageStringToSend, value);
         }
 

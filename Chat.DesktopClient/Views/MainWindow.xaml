@@ -8,12 +8,26 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="Chat" Height="450" Width="800">
-    <Grid>
-        <StackPanel VerticalAlignment="Center">
-            <ListView Height="300" Width="500"
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Yellow" Offset="0.0" />
+            <GradientStop Color="Red" Offset="0.25" />
+            <GradientStop Color="Blue" Offset="0.75" />
+            <GradientStop Color="LimeGreen" Offset="1.0" />
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="140,31,140,50">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="308*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.ColumnSpan="2"
                       ItemsSource="{Binding ReceivedMessages}"/>
-            <TextBox Height="50" Width="500" Text="{Binding MessageStringToSend}"/>
-            <Button Height="50" Width="500" Content="Send Message" Command="{Binding SendMessageCommand}"></Button>
-        </StackPanel>
+        <TextBox Text="{Binding MessageStringToSend, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0"/>
+        <Button Content="Send" Command="{Binding SendMessageCommand}" IsDefault="True" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Window>
