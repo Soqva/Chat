@@ -1,4 +1,5 @@
 ﻿using Chat.DesktopClient.Services;
+using Core;
 using Prism.Commands;
 using Prism.Mvvm;
 using System.Collections.ObjectModel;
@@ -20,12 +21,19 @@ namespace Chat.DesktopClient.ViewModels
             set => SetProperty(ref _messageStringToSend, value);
         }
 
+        private string _output = "";
+
+        public string Output
+        {
+            get => _output;
+            set => SetProperty(ref _output, value);
+        }
+
         public MainWindowViewModel()
         {
             SendMessageCommand = new DelegateCommand(SendMessage);
             ReceivedMessages = new ObservableCollection<string>();
-            _messageService = new MessageService();
-            _messageService.ReceiveEvent += ReceiveMessage;
+            _messageService = new MessageService(this);
         }
 
         private void SendMessage()
@@ -37,10 +45,12 @@ namespace Chat.DesktopClient.ViewModels
             }
         }
 
-        private void ReceiveMessage()
+        public void ReceiveMessage(Message message)
         {
-            string receivedMessageString = _messageService.ReceivedMessageObject.User.Name + ": " + _messageService.ReceivedMessageObject.Text;
-            System.Windows.Application.Current.Dispatcher.Invoke(() => ReceivedMessages.Add(receivedMessageString));
+            string receivedMessageString = message.User.Name + ": " + message.Text;
+            if (Output.Length == 0) Output = receivedMessageString;
+            else Output = $"{Output}\n{receivedMessageString}";
+            //System.Windows.Application.Current.Dispatcher.Invoke(() => ReceivedMessages.Add(receivedMessageString));
         }
     }
 }
