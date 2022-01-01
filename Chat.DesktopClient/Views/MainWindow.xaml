@@ -26,7 +26,7 @@
             <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
         <ScrollViewer Grid.ColumnSpan="2" >
-            <TextBlock Text="{Binding Output}" Background="White"/>
+            <TextBlock Text="{Binding ReceivedMessages}" Background="White"/>
         </ScrollViewer>
         <TextBox Text="{Binding MessageStringToSend, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0"/>
         <Button Content="Send" Command="{Binding SendMessageCommand}" IsDefault="True" Grid.Row="1" Grid.Column="1"/>

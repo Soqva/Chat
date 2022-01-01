@@ -21,12 +21,12 @@ namespace Chat.DesktopClient.Services
 
         private readonly MessageRepository _messageRepository;
 
-        private readonly MainWindowViewModel _mainViewModel;
+        private readonly MainWindowViewModel _mainWindowViewModel;
 
 
         public MessageService(MainWindowViewModel mainWindowViewModel)
         {
-            _mainViewModel = mainWindowViewModel;
+            _mainWindowViewModel = mainWindowViewModel;
             _messageRepository = new MessageRepository();
             _connectionManager = new ConnectionManager(API);
             _connectionManager.ReceivedMessageHandler += ReceiveMessage;
@@ -49,9 +49,9 @@ namespace Chat.DesktopClient.Services
             _ = _connectionManager.Client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        private void ReceiveMessage(object sender, Message message)
+        private void ReceiveMessage(object sender, Message messageObject)
         {
-            _mainViewModel.ReceiveMessage(message);
+            _mainWindowViewModel.ReceiveMessage(messageObject);
         }
     }
 }

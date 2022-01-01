@@ -10,8 +10,6 @@ namespace Chat.DesktopClient.ViewModels
     {
         public DelegateCommand SendMessageCommand { get; private set; }
 
-        public ObservableCollection<string> ReceivedMessages { get; set; }
-
         private readonly MessageService _messageService;
 
         private string _messageStringToSend;
@@ -21,18 +19,16 @@ namespace Chat.DesktopClient.ViewModels
             set => SetProperty(ref _messageStringToSend, value);
         }
 
-        private string _output = "";
-
-        public string Output
+        private string _receivedMessages;
+        public string ReceivedMessages
         {
-            get => _output;
-            set => SetProperty(ref _output, _output + "\n" + value);
+            get => _receivedMessages;
+            set => SetProperty(ref _receivedMessages, _receivedMessages + "\n" + value);
         }
 
         public MainWindowViewModel()
         {
             SendMessageCommand = new DelegateCommand(SendMessage);
-            ReceivedMessages = new ObservableCollection<string>();
             _messageService = new MessageService(this);
         }
 
@@ -45,10 +41,10 @@ namespace Chat.DesktopClient.ViewModels
             }
         }
 
-        public void ReceiveMessage(Message message)
+        public void ReceiveMessage(Message messageObject)
         {
-            string receivedMessageString = message.User.Name + ": " + message.Text;
-            Output = receivedMessageString;
+            string receivedMessageString = messageObject.User.Name + ": " + messageObject.Text;
+            ReceivedMessages = receivedMessageString;
         }
     }
 }
