@@ -27,11 +27,10 @@ namespace Chat.DesktopClient.Services
         public MessageService(MainWindowViewModel mainWindowViewModel)
         {
             _mainViewModel = mainWindowViewModel;
-            _connectionManager = new ConnectionManager(API);
             _messageRepository = new MessageRepository();
-            _ = _connectionManager.StartConnection();
-            _connectionManager.ReceivedEvent += ReceiveMessage;
-            //_ = Task.Run(() => ReceiveMessage());
+            _connectionManager = new ConnectionManager(API);
+            _connectionManager.ReceivedMessageHandler += ReceiveMessage;
+            _ = _connectionManager.StartConnection(); 
         }
 
         public void SendMessage(string messageStringToSend)
@@ -50,10 +49,9 @@ namespace Chat.DesktopClient.Services
             _ = _connectionManager.Client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        private void ReceiveMessage(object sender, string message)
+        private void ReceiveMessage(object sender, Message message)
         {
-            Message casted = JsonConvert.DeserializeObject<Message>(message);
-            _mainViewModel.ReceiveMessage(casted);
+            _mainViewModel.ReceiveMessage(message);
         }
     }
 }

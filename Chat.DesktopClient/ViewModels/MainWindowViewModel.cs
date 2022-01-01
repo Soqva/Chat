@@ -26,7 +26,7 @@ namespace Chat.DesktopClient.ViewModels
         public string Output
         {
             get => _output;
-            set => SetProperty(ref _output, value);
+            set => SetProperty(ref _output, _output + "\n" + value);
         }
 
         public MainWindowViewModel()
@@ -48,9 +48,7 @@ namespace Chat.DesktopClient.ViewModels
         public void ReceiveMessage(Message message)
         {
             string receivedMessageString = message.User.Name + ": " + message.Text;
-            if (Output.Length == 0) Output = receivedMessageString;
-            else Output = $"{Output}\n{receivedMessageString}";
-            //System.Windows.Application.Current.Dispatcher.Invoke(() => ReceivedMessages.Add(receivedMessageString));
+            Output = receivedMessageString;
         }
     }
 }

@@ -4,18 +4,19 @@ using System.Net.WebSockets;
 using System.Threading;
 using Core;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Chat.DesktopClient.Managers
 {
     class ConnectionManager
     {
-        private readonly string _api;
+        public event EventHandler<Message> ReceivedMessageHandler;
 
         public ClientWebSocket Client { get; private set; }
 
         public User User { get; private set; }
 
-        public event EventHandler<string> ReceivedEvent;
+        private readonly string _api;
 
         public ConnectionManager(string api)
         {
@@ -36,30 +37,24 @@ namespace Chat.DesktopClient.Managers
             _ = ReceiveMessage();
         }
 
-        protected void OnReceivedEvent(string message)
-        {
-            EventHandler<string> receivedEvent = ReceivedEvent;
-
-            if (receivedEvent != null)
-            {
-                receivedEvent(this, message);
-            }
-        }
-
         private async Task ReceiveMessage()
         {
-            var buffer = new byte[1024 * 4];
+            byte[] buffer = new byte[1024 * 4];
 
             while (true)
             {
-                var result = await Client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                WebSocketReceiveResult result = await Client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                
                 if (result.MessageType == WebSocketMessageType.Close)
                 {
                     await Client.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
                     break;
                 }
+                
                 string jsonMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                OnReceivedEvent(jsonMessage);
+                Message messageObject = JsonConvert.DeserializeObject<Message>(jsonMessage);
+                
+                ReceivedMessageHandler?.Invoke(this, messageObject);
             }
         }
     }
