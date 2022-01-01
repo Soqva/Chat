@@ -103,3 +103,4 @@ D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Microsoft.EntityFra
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Npgsql.dll
 D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Projects\Chat\Chat.DesktopClient\bin\Debug\net5.0-windows\NLog.dll

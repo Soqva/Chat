@@ -20,6 +20,9 @@ namespace Chat.DesktopClient.Repositories
                 dataBase.MessagesFromUsers.Add(messageToRepo);
                 dataBase.SaveChanges();
             }
+
+            NLog.Logger logger = Logger.Logger.GetLogger();
+            logger.Info($"The message from the {messageObjectFromUser.User.Name} was saved in the DB.");
         }
     }
 }

@@ -2,7 +2,6 @@
 using Core;
 using Prism.Commands;
 using Prism.Mvvm;
-using System.Collections.ObjectModel;
 
 namespace Chat.DesktopClient.ViewModels
 {

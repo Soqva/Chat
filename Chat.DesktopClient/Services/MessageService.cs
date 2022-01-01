@@ -47,6 +47,9 @@ namespace Chat.DesktopClient.Services
             byte[] bytes = Encoding.UTF8.GetBytes(jsonMessageToSend);
 
             _ = _connectionManager.Client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
+
+            NLog.Logger logger = Logger.Logger.GetLogger();
+            logger.Info($"{messageObjectToSend.User.Name} sent \"{messageObjectToSend.Text}\" to the server.");
         }
 
         private void ReceiveMessage(object sender, Message messageObject)

@@ -34,6 +34,10 @@ namespace Chat.DesktopClient.Managers
             };
 
             await Client.ConnectAsync(new Uri($"ws://localhost:5000/{_api}"), CancellationToken.None);
+
+            NLog.Logger logger = Logger.Logger.GetLogger();
+            logger.Info($"{User.Name} connected to the server.");
+
             _ = ReceiveMessage();
         }
 

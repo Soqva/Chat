@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "c39UkMpe6HK3XQqSoL6ECENLSmzKFo9NnAL/4CszycQ5CnuFugSd5ZRjEUGPryaGAqV3hmM2N3RKDJNpS+zHyw==",
+  "dgSpecHash": "UY8swWeIvV67fCFZeDt9q874REra9ENwPerr9y1kOYG2wlrav6CS4ACekrAqYCqdWa3sY+o28KK8AqHm6EqwWg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Chat\\Chat.DesktopClient\\Chat.DesktopClient.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Users\\SoqvaLaptop\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\SoqvaLaptop\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.31\\microsoft.xaml.behaviors.wpf.1.1.31.nupkg.sha512",
     "C:\\Users\\SoqvaLaptop\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\SoqvaLaptop\\.nuget\\packages\\nlog\\4.7.10\\nlog.4.7.10.nupkg.sha512",
     "C:\\Users\\SoqvaLaptop\\.nuget\\packages\\npgsql\\5.0.10\\npgsql.5.0.10.nupkg.sha512",
     "C:\\Users\\SoqvaLaptop\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.10\\npgsql.entityframeworkcore.postgresql.5.0.10.nupkg.sha512",
     "C:\\Users\\SoqvaLaptop\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
