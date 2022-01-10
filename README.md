@@ -19,15 +19,12 @@ Simple chat using
 
 To send a message, you need to press the "Enter" key or just click the "Send" button.
 
-```
 ![Alt Text](https://github.com/Soqva/chat/blob/master/github/gifs/sending-messages.gif)
-```
 
 All users receive messages from the server automatically.
 
-```
+
 ![Alt Text](https://github.com/Soqva/chat/blob/master/github/gifs/receiving-messages.gif)
-```
 
 ## Saving Message History
 
@@ -39,17 +36,12 @@ The entries in the database contain:
 - text
 - datetime.
 
-```
 ![Alt Text](https://github.com/Soqva/chat/blob/master/github/gifs/db.gif)
-```
 
 ## Logging
 
 The NLog logger writes actions such as sending messages, saving messages in the DB and etc.
 
-```
 ![Alt Text](https://github.com/Soqva/chat/blob/master/github/gifs/logging-part1.gif)
-```
-```
+
 ![Alt Text](https://github.com/Soqva/chat/blob/master/github/gifs/logging-part2.gif)
-```
