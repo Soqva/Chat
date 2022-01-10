@@ -1,15 +1,6 @@
-2022-01-01 14:05:28.3288|INFO|Chat.DesktopClient.Logger.Logger|User212 connected to the server.
-2022-01-01 14:05:30.7737|INFO|Chat.DesktopClient.Logger.Logger|User718 connected to the server.
-2022-01-01 14:05:38.8071|INFO|Chat.DesktopClient.Logger.Logger|User212 sent "hi everyone" to the server.
-2022-01-01 14:05:40.8882|INFO|Chat.DesktopClient.Logger.Logger|User718 sent "hi" to the server.
-2022-01-01 14:05:41.1457|INFO|Chat.DesktopClient.Logger.Logger|The message from the User212 was saved in the DB.
-2022-01-01 14:05:42.3519|INFO|Chat.DesktopClient.Logger.Logger|The message from the User718 was saved in the DB.
-2022-01-01 14:05:43.7535|INFO|Chat.DesktopClient.Logger.Logger|User443 connected to the server.
-2022-01-01 14:05:46.5151|INFO|Chat.DesktopClient.Logger.Logger|User443 sent "hello there" to the server.
-2022-01-01 14:05:48.1185|INFO|Chat.DesktopClient.Logger.Logger|The message from the User443 was saved in the DB.
-2022-01-01 14:05:48.9742|INFO|Chat.DesktopClient.Logger.Logger|User443 sent "bye" to the server.
-2022-01-01 14:05:49.0642|INFO|Chat.DesktopClient.Logger.Logger|The message from the User443 was saved in the DB.
-2022-01-01 14:05:54.2715|INFO|Chat.DesktopClient.Logger.Logger|User718 sent "bb br" to the server.
-2022-01-01 14:05:54.3850|INFO|Chat.DesktopClient.Logger.Logger|The message from the User718 was saved in the DB.
-2022-01-01 14:05:59.5888|INFO|Chat.DesktopClient.Logger.Logger|User212 sent "enough" to the server.
-2022-01-01 14:05:59.6920|INFO|Chat.DesktopClient.Logger.Logger|The message from the User212 was saved in the DB.
+2022-01-10 19:48:15.0674|INFO|Chat.DesktopClient.Logger.Logger|User191 connected to the server.
+2022-01-10 19:48:20.3307|INFO|Chat.DesktopClient.Logger.Logger|User338 connected to the server.
+2022-01-10 19:48:36.2061|INFO|Chat.DesktopClient.Logger.Logger|User338 sent "logger" to the server.
+2022-01-10 19:48:37.6927|INFO|Chat.DesktopClient.Logger.Logger|The message from the User338 was saved in the DB.
+2022-01-10 19:48:39.1841|INFO|Chat.DesktopClient.Logger.Logger|User191 sent "writes" to the server.
+2022-01-10 19:48:40.5363|INFO|Chat.DesktopClient.Logger.Logger|The message from the User191 was saved in the DB.
